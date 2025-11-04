@@ -14,24 +14,25 @@
         <WidgetPanel05 />
         <WidgetPanel06 />
       </div>
-      <div class="main-middle" ref="container"></div>
+      <div ref="container" class="main-middle"></div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import LayoutHeader from '@/components/LayoutHeader.vue'
-import LayoutFooter from '@/components/LayoutFooter.vue'
-import LayoutLoading from '@/components/LayoutLoading.vue'
-
-import WidgetPanel01 from '@/components/WidgetPanel01.vue'
-import WidgetPanel02 from '@/components/WidgetPanel02.vue'
-import WidgetPanel03 from '@/components/WidgetPanel03.vue'
-import WidgetPanel04 from '@/components/WidgetPanel04.vue'
-import WidgetPanel05 from '@/components/WidgetPanel05.vue'
-import WidgetPanel06 from '@/components/WidgetPanel06.vue'
-
-import { useStation } from '@/hooks/useStation'
 import { provide } from 'vue'
+import LayoutHeader from './components/LayoutHeader.vue'
+import LayoutFooter from './components/LayoutFooter.vue'
+import LayoutLoading from './components/LayoutLoading.vue'
+
+import WidgetPanel01 from './components/WidgetPanel01.vue'
+import WidgetPanel02 from './components/WidgetPanel02.vue'
+import WidgetPanel03 from './components/WidgetPanel03.vue'
+import WidgetPanel04 from './components/WidgetPanel04.vue'
+import WidgetPanel05 from './components/WidgetPanel05.vue'
+import WidgetPanel06 from './components/WidgetPanel06.vue'
+
+import { useStation } from './hooks/useStation'
+
 const {
   container,
   loading,
@@ -48,7 +49,7 @@ provide('events', { startInspect, stopInspect, startWarming, stopWarming })
   width: 100%;
   height: 100%;
   background-color: #000;
-  background-image: url(@/assets/page_bg.png);
+  background-image: url(./assets/page_bg.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   .layout-main {
@@ -90,7 +91,6 @@ provide('events', { startInspect, stopInspect, startWarming, stopWarming })
         position: absolute;
         top: 0;
         left: 0;
-        z-index: 2;
         z-index: 99;
         width: 100%;
         height: 100%;

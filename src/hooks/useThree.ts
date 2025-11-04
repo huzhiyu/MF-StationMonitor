@@ -33,9 +33,9 @@ export function useThree() {
 
   const boostrap = () => {
     const { clientWidth, clientHeight } = container.value!
-    //Scene
+    // Scene
     scene.value = new THREE.Scene()
-    //Camera
+    // Camera
     camera.value = new THREE.PerspectiveCamera(
       45,
       clientWidth / clientHeight,
@@ -43,14 +43,14 @@ export function useThree() {
       10000
     )
     camera.value.position.set(20, 15, 20)
-    //Renderer
+    // Renderer
     renderer.value = new THREE.WebGLRenderer({ antialias: true, alpha: true })
     renderer.value.shadowMap.enabled = false
     renderer.value.outputEncoding = THREE.sRGBEncoding
     renderer.value.setSize(clientWidth, clientHeight)
     renderer.value.setClearAlpha(0.5)
     container.value!.appendChild(renderer.value.domElement)
-    //CssRenderer
+    // CssRenderer
     cssRenderer.value = new CSS2DRenderer()
     cssRenderer.value.setSize(clientWidth, clientHeight)
     cssRenderer.value.domElement.className = 'css2d-renderer'
@@ -59,7 +59,7 @@ export function useThree() {
     cssRenderer.value.domElement.style.pointerEvents = 'none'
     container.value!.appendChild(cssRenderer.value.domElement)
 
-    //Controls
+    // Controls
     controls.value = new OrbitControls(camera.value, renderer.value.domElement)
     controls.value.minPolarAngle = 0
     controls.value.enableDamping = true
@@ -70,7 +70,7 @@ export function useThree() {
     controls.value.maxDistance = 100
     controls.value.update()
 
-    //Lights
+    // Lights
     const ambientLight = new THREE.AmbientLight(0x999999, 10)
     scene.value.add(ambientLight)
 
@@ -82,7 +82,7 @@ export function useThree() {
     // scene.value.add(new THREE.DirectionalLightHelper(directionalLight, 5))
     scene.value.add(directionalLight)
 
-    //composer
+    // composer
     // const composer = new EffectComposer(renderer.value)
     // const renderPass = new RenderPass(scene.value, camera.value)
     // composer.addPass(renderPass)

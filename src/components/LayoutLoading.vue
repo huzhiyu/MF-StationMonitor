@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-loading" v-show="loading.isLoading">
+  <div v-show="loading.isLoading" class="layout-loading">
     <div class="loading-gif"></div>
     <div class="loading-tip">
       模型正在加载中 ({{ loading.loaded }}/{{ loading.total }}) ...

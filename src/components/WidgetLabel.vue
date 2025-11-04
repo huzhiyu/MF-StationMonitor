@@ -8,7 +8,7 @@ interface PropsType {
 const props = defineProps<PropsType>()
 
 const onClick = () => {
-  alert(props.name)
+  console.log(props.name)
 }
 </script>
 <style lang="scss" scoped>

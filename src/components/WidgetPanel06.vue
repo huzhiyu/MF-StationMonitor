@@ -1,10 +1,11 @@
 <template>
   <LayoutPanel title="预警情况">
     <div class="wrap">
-      <div class="item-list" ref="container">
+      <div ref="container" class="item-list">
         <div
+          v-for="({ name, event, type, time }, index) in list"
+          :key="index"
           class="item"
-          v-for="{ name, event, type, time } in list"
           :style="{ background: generateTypeColor(type, '55') }"
         >
           <div
@@ -21,8 +22,8 @@
   </LayoutPanel>
 </template>
 <script setup lang="ts">
-import LayoutPanel from './LayoutPanel.vue'
 import { ref, onMounted } from 'vue'
+import LayoutPanel from './LayoutPanel.vue'
 
 const list = ref<any[]>([
   {
@@ -181,9 +182,9 @@ const generateTypeColor = (type: 1 | 2 | 3, gradual = false) => {
   }
   if (gradual) {
     return `linear-gradient(90deg, ${colors[type]}77 , transparent )`
-  } else {
-    return colors[type]
   }
+    return colors[type]
+
 }
 
 let timer: any
@@ -195,6 +196,7 @@ onMounted(() => {
       if (!timer) return void 0
       container.value.classList.remove('scroll')
       list.value.push(list.value.shift())
+      return true
     }, 2000)
   }, 3000)
 })

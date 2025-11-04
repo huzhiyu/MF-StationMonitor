@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
-import App from './App.vue'
 import autofit from 'autofit.js'
+import App from './App.vue'
 
 const boostrap = async () => {
   const app = createApp(App)
@@ -10,7 +10,7 @@ const boostrap = async () => {
     big: [2560, 1440],
     normal: [1920, 1080],
     small: [1280, 720],
-  }['normal']
+  }.normal
 
   autofit.init({
     el: '#app',

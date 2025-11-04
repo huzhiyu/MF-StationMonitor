@@ -1,18 +1,17 @@
 <template>
   <LayoutPanel title="主变电负荷电流变化">
-    <div class="container" ref="container"></div>
+    <div ref="container" class="container"></div>
   </LayoutPanel>
 </template>
 <script setup lang="ts">
-import LayoutPanel from './LayoutPanel.vue'
 import { nextTick, onMounted } from 'vue'
 import { sampleSize, range } from 'lodash'
-import useEcharts from '@/hooks/useEcharts'
+import LayoutPanel from './LayoutPanel.vue'
+import useEcharts from '../hooks/useEcharts'
 
 const { container, echarts, setOption } = useEcharts()
 
-const generateOptions = (sources: any[][]) => {
-  return {
+const generateOptions = (sources: any[][]) => ({
     legend: {
       show: true,
       right: 0,
@@ -115,8 +114,7 @@ const generateOptions = (sources: any[][]) => {
         data: sources[2],
       },
     ],
-  }
-}
+  })
 
 onMounted(() => {
   nextTick(() => {

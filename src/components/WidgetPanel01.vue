@@ -1,17 +1,16 @@
 <template>
   <LayoutPanel title="故障对比">
-    <div class="container" ref="container"></div>
+    <div ref="container" class="container"></div>
   </LayoutPanel>
 </template>
 <script setup lang="ts">
-import LayoutPanel from './LayoutPanel.vue'
 import { nextTick, onMounted } from 'vue'
-import useEcharts from '@/hooks/useEcharts'
+import LayoutPanel from './LayoutPanel.vue'
+import useEcharts from '../hooks/useEcharts'
 
 const { container, echarts, setOption } = useEcharts()
 
-const generateOptions = () => {
-  return {
+const generateOptions = () => ({
     legend: {
       show: true,
       right: 0,
@@ -90,8 +89,7 @@ const generateOptions = () => {
         },
       },
     ],
-  }
-}
+  })
 
 onMounted(() => {
   nextTick(() => {

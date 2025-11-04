@@ -14,7 +14,7 @@ import TWEEN from 'three/examples/jsm/libs/tween.module.js'
 import * as THREE from 'three'
 import { sample } from 'lodash'
 import useThree from './useThree'
-import WidgetLabel from '@/components/WidgetLabel.vue'
+import WidgetLabel from '../components/WidgetLabel.vue'
 
 // 模型路径信息
 const Sources = {
@@ -23,7 +23,7 @@ const Sources = {
   LineModel: `${import.meta.env.VITE_API_DOMAIN}/models/lines.gltf`,
 }
 
-//设备名称点位信息
+// 设备名称点位信息
 const LabelPositions = [
   {
     name: '1# 550KV I线高抗',
@@ -120,7 +120,7 @@ export function useStation() {
   const warmingTimer = ref()
   const warmingCurrent = shallowRef()
 
-  //加载模型
+  // 加载模型
   const loadModel = async () => {
     const loadBuildingModel = async () => {
       const gltf = await loadGltf(Sources.BuildingModel)
@@ -145,7 +145,7 @@ export function useStation() {
     loading.isLoading = false
     loading.loaded = 3
   }
-  //添加道路箭头动画
+  // 添加道路箭头动画
   const addRoadArrowAnimation = () => {
     if (!models.building) return void 0
     const textures: any[] = []
@@ -158,8 +158,9 @@ export function useStation() {
       })
     }
     renderMixins.set('road-arrow', animation)
+    return true
   }
-  //添加设备名称标识
+  // 添加设备名称标识
   const addDeviceLabels = () => {
     const cRender = (component: any, props: any) => {
       const newComponent = defineComponent({
@@ -178,7 +179,7 @@ export function useStation() {
     })
   }
 
-  //摄像头移动效果
+  // 摄像头移动效果
   const cameraAnimation = (
     oldPosition: any,
     oldTarget: any,
@@ -215,9 +216,8 @@ export function useStation() {
     })
     return tween
   }
-  //开始巡检
-  const startInspect = () => {
-    return new Promise((resolve) => {
+  // 开始巡检
+  const startInspect = () => new Promise((resolve) => {
       const positions = [
         {
           position: {
@@ -340,7 +340,7 @@ export function useStation() {
           },
         },
       ]
-      //漫游起点
+      // 漫游起点
       inspect.value = cameraAnimation(
         {
           x: camera.value.position.x,
@@ -453,8 +453,7 @@ export function useStation() {
         resolve(true)
       })
     })
-  }
-  //停止巡检
+  // 停止巡检
   const stopInspect = () => {
     inspect.value?.stop()
     cameraAnimation(
@@ -482,7 +481,7 @@ export function useStation() {
       TWEEN.Easing.Linear.None
     ).start()
   }
-  //开始模拟告警
+  // 开始模拟告警
   const startWarming = () => {
     const handle = () => {
       if (warmingCurrent.value) {
@@ -521,7 +520,7 @@ export function useStation() {
     handle()
     warmingTimer.value = setInterval(handle, 1000 * 2)
   }
-  //停止模拟告警
+  // 停止模拟告警
   const stopWarming = () => {
     if (warmingCurrent.value) {
       warmingCurrent.value.traverse((mesh: any) => {

@@ -28,6 +28,7 @@ const warmingHandle = async () => {
   }
   // state.isWarming = !state.isWarming
   // await events.startInspect()
+  return true
 }
 
 const inspectHandle = async () => {
@@ -39,6 +40,7 @@ const inspectHandle = async () => {
   } else {
     await events.stopInspect()
   }
+  return true
 }
 
 const warmingStyle = computed(() => {

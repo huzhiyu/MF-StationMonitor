@@ -18,6 +18,7 @@
 </template>
 <script setup lang="ts">
 import LayoutPanel from './LayoutPanel.vue'
+
 const source = [
   {
     icon: 'fa-solid fa-temperature-three-quarters',
